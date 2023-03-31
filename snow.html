@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snow</title>
+    <style>
+        html,body{background:black;color:white;}
+        div{
+            background:red;
+            width:25px;
+            height:25px;
+        }
+        .snow{
+            position:absolute;
+        	z-index:1;
+            top:-10px;
+	        width:10px; height:10px;
+	        background:white;
+	        border-radius:100%;
+            animation:fall 10s linear;
+        }
+        @keyframes fall{
+            from{}
+            to{translate: 0 101vh;}
+        }
+    </style>
+    <script>
+        function createSnow(){
+            let snow=document.createElement("div");
+            let delay=Math.random()*100;
+            let duration=10;
+            snow.className="snow";
+            snow.style.left=Math.random()*window.innerWidth+"px";
+            snow.style.animationDelay=delay+"s";
+            document.body.appendChild(snow);
+            setTimeout(()=>{
+                document.body.removeChild(snow);
+            },(duration+delay)*1000);
+        }
+        window.onload=function(){
+                for(i=0; i<1000;i++){
+                    createSnow();
+                }
+        }
+        alert(document.getElementsByClassName("info").item(i).nodeValue);
+    </script>
+</head>
+<body>
+</body>
+<script>
+    let x=document.createElement("div");
+    let y=document.createTextNode("wow");
+    x.append(y);
+    document.body.appendChild(x);
+</script>
+</html>

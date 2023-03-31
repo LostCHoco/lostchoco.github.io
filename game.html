@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>???</title>
+    <style>
+        *{margin:0; padding:0;}
+        html{background:linear-gradient(to right,pink, red, orange, yellow, yellowgreen, green, skyblue,blue,darkblue,purple);}
+        html,body{
+            width:100%;height:100%;
+            display:flex; justify-content: center; align-items: center;
+        }
+        body{background:rgba(0,0,0, 0.6)}
+        #window{
+            width:800px;height:800px;
+            border:3px solid whitesmoke;background:gray;
+            display:grid;
+            grid-template-columns: repeat(80, 1fr);
+            grid-template-rows: repeat(80, 1fr);
+        }
+        #controller{
+            width:400px; height:200px;
+            border:3px solid whitesmoke;
+            background:silver;
+            display:none;
+            justify-content: space-between;align-items: center;
+        }
+        #controller>div{
+            padding:0 5%;
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            grid-template-rows: repeat(3,1fr);
+            grid-template-areas: ". up_ ." "left_ . right_" ". down_ .";
+        }
+        #controller>div>div{
+            width:50px;height:50px;
+            background:brown; color:white;
+            border:2px solid black; border-radius: 100%;
+            display:flex;
+            justify-content: center; align-items: center;
+            font-weight: bold;
+        }
+        #controller>div>div:active{
+            background:yellow;color:black;
+        }
+        #left,#x{grid-area: left_;}
+        #right,#a{grid-area: right_;}
+        #up,#y{grid-area: up_;}
+        #down,#b{grid-area: down_;}
+        #controller>div>div:hover{cursor:pointer;}
+        #window_border{
+            border:3px solid whitesmoke;
+            border-radius:10px;
+        }
+        .pixel{width:10px;height:10px; background:black;}
+        .pixel:hover{background:whitesmoke;}
+        @media screen and (max-width:1000px),screen and (max-height:850px){
+            #window{ width:600px; height:600px;}
+            .pixel{width:7.5px;height:7.5px}
+        }
+        @media screen and (max-width: 800px),screen and (max-height:650px) {
+            #window{ width:400px; height:400px;}
+            .pixel{width:5px;height:5px}
+            #controller{display:flex;}
+        }
+        @media screen and (max-width: 500px),screen and (max-height:450px) {
+            #window{ width:320px; height:320px;}
+            .pixel{width:4px;height:4px}
+            #controller{width:320px; height:160px;}
+            #controller>div>div{width:40px; height:40px; font-size:0.9em;}
+        }
+    </style>
+    <script>
+        let power_status=false;
+        window.onload=function(){
+            let box=document.getElementById("window");
+            let size=document.getElementById("window").clientWidth;
+            for(i=1;i<=80;i++){
+                for(j=1;j<=80;j++){
+                    let pixel=document.createElement("div");
+                    pixel.className="pixel";
+                    box.appendChild(pixel);
+                }
+            }
+        }
+        window.onclick=function(){
+            let pixel=document.getElementsByClassName("pixel");
+            alert(pixel.length);
+        }
+    </script>
+</head>
+<body>
+    <div id="window_border">
+        <div id="window"></div>
+        <div id="controller">
+            <div id="move">
+                <div id="left">&lt;</div><div id="right">&gt;</div><div id="up">^</div><div id="down">v</div>
+            </div>
+            <div id="action">
+                <div id="a">A</div><div id="b">B</div><div id="x">X</div> <div id="y">Y</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

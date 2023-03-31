@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB</title>
+    <style>
+        body>div{margin:20px;}
+        button{margin:5px 0;}
+        th{padding:0 5px;background:aliceblue;}
+        #wrapper{display:flex;}
+        .btnTB{text-align:center;}
+        #logout{
+            display:none;
+            text-align:center;
+            border:1px solid black;
+        }
+        #username{
+            font-weight: bold;
+        }
+        </style>
+        <script>
+        function setDB(){
+            if(checkDuplication()){
+                alert("중복되는 UserName이 있습니다.");
+                return false;
+            }
+            let info=getInfo();
+            if(info[0]==""){
+                alert("UserName을 입력해주세요.");
+                return false;
+            }
+            let leng=info.length;
+            let db=document.getElementById("dbTable");
+            let tr=document.createElement("tr");
+            let infoTxt=document.getElementsByClassName("info");
+            db.appendChild(tr);
+            for(i=0;i<leng;i++){
+                let td=document.createElement("td");
+                td.append(info[i]);
+                if(i==0)td.className="userID";
+                if(i==1)td.className="userPWD";
+                if(i==2)td.className="userNAME";
+                db.appendChild(td);
+                infoTxt.item(i).value="";
+            }
+        }
+        function getInfo(){
+            let info=new Array();
+            let leng=document.getElementsByClassName("info").length;
+            for(i=0;i<leng;i++){
+                info[i]=document.getElementsByClassName("info").item(i).value;
+            }
+            return info;
+        }
+        function getID_Array(){
+            let arr= new Array();
+            let leng=document.getElementsByClassName("userID").length;
+            for(i=0;i<leng;i++){
+                arr[i]=document.getElementsByClassName("userID").item(i).textContent;
+            }
+            return arr;
+        }
+        function getPWD_Array(){
+            let arr= new Array();
+            let leng=document.getElementsByClassName("userPWD").length;
+            for(i=0;i<leng;i++){
+                arr[i]=document.getElementsByClassName("userPWD").item(i).textContent;
+            }
+            return arr;
+        }
+        function checkDuplication(){
+            let boolean=false;
+            let DBid=getID_Array();
+            let id=document.getElementsByClassName("info").item(0).value;
+            for(i=0;i<DBid.length;i++){
+                if(DBid[i]==id){
+                    boolean=true;
+                    break;
+                }
+            }
+            return boolean;
+        }
+        function login(){
+            let id=document.getElementsByClassName("login").item(0);
+            let pass=document.getElementsByClassName("login").item(1);
+            if(id.value==""){
+                alert("UserName을 입력하세요.");
+                id.focus();
+            }else if(pass.value==""){
+                alert("Password를 입력하세요.")
+                pass.focus();
+            }else if(!checkID()){
+                alert("등록되지 않은 사용자입니다.");
+                id.focus();
+            }else if(!checkPWD()){
+                alert("패스워드가 일치하지 않습니다.");
+                pass.focus();
+            }else{
+                let db=getUserDB();
+                let login_div=document.getElementById("signin");
+                let logout_div=document.getElementById("logout");
+                let nickname=document.getElementById("username");
+                let id=document.getElementsByClassName("login").item(0);
+                let pwd=document.getElementsByClassName("login").item(1);
+                nickname.innerText=db[2];
+                id.value="";
+                pwd.value="";
+                login_div.style.display="none";
+                logout_div.style.display="block";
+            }
+        }
+        function logout(){
+            let login_div=document.getElementById("signin");
+            let logout_div=document.getElementById("logout");
+            let nickname=document.getElementById("username");
+            nickname.innerText="";
+            login_div.style.display="block";
+            logout_div.style.display="none";
+        }
+        function checkID(){
+            let boolean=false;
+            let arr=getID_Array();
+            let id=document.getElementsByClassName("login").item(0).value;
+            for(i=0;i<arr.length;i++){
+                if(arr[i]==id){
+                    boolean=true;
+                    break;
+                }
+            }
+            return boolean;
+        }
+        function checkPWD(){
+            let boolean=false;
+            let pwd=document.getElementsByClassName("login").item(1).value;
+            let db=getUserDB();
+            if(db[1]==pwd){
+                boolean=true;
+            }
+            return boolean;
+        }
+        function getUserDB(){
+            let id_arr=getID_Array();
+            let id=document.getElementsByClassName("login").item(0).value;
+            let n=0;
+            for(i=0;i<id_arr.length;i++){
+                if(id_arr[i]==id){
+                    n=i;
+                    break;
+                }
+            }
+            let user_arr=new Array();
+            user_arr[0]=document.getElementsByClassName("userID").item(n).textContent;
+            user_arr[1]=document.getElementsByClassName("userPWD").item(n).textContent;
+            user_arr[2]=document.getElementsByClassName("userNAME").item(n).textContent;
+            return user_arr;
+        }
+        let a="aasdf";
+        a.substr
+        </script>
+</head>
+<body>
+    <section>
+    <div id="wrapper">
+        <div id="signup">
+            <form name="f">
+            <table border=1>
+            <tr>
+            <th>UserName
+            <td><input class="info" type="text"  maxlength="12">
+            <tr>
+            <th>Password
+            <td><input class="info" type="password" maxlength="12">
+            <tr>
+            <th>NickName
+            <td><input class="info" type="text"  maxlength="12">
+            <tr>
+            <td colspan=2 class="btnTB">
+            <button type="button" onclick="setDB()">등록</button>
+            </table>
+            </form>
+        </div>
+        <div id="log_wrapper">
+            <div id="signin">
+                <form>
+                <table border="1">
+                <tr>
+                <th>UserName</th>
+                <td><input class="login" type="text"></td>
+                </tr>
+                <tr>
+                <th>Password</th>
+                <td><input class="login" type="password"></td>
+                </tr>
+                <tr>
+                <td colspan="2" class="btnTB">
+                <button type="button" onclick="login()">Login</button>
+                </td>
+                </tr>
+                </table>
+                </form>
+            </div>
+            <div id="logout">
+                <span id="username"></span>님 환영합니다.
+                <form>
+                    <button type="button" onclick="logout()">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<div id="DataBase">
+    <fieldset>
+    <legend>DataBase</legend>
+    <table id="dbTable" border=1>
+    <tr>
+    <th>이름
+    <th>비밀번호
+    <th>별명
+    </tr>
+    </table>
+    </fieldset>
+</div>
+</section>
+</body>
+</html>
