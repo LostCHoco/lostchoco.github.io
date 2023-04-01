@@ -53,3 +53,9 @@ button.dark,#timePanel.dark {
 .on{
     background:white;
 }
+.pixel:hover{
+    background:magenta;
+}
+.on:hover{
+    background:cyan;
+}

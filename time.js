@@ -11,7 +11,7 @@ function addZero(n){
     if(n<10){
         n="0"+n;
     }else{
-        n.toString();
+        n=n.toString();
     }
     return n;
 }
@@ -82,9 +82,9 @@ function setCol(){
         let pixelIndex=1;
         pixel.forEach(n=>{
             if(pixelIndex==5||pixelIndex==11){
-                n.style.background="white";
+                n.classList.add("on");
             }else{
-                n.style.background="black";
+                n.classList.remove("on");
             }
             pixelIndex++;
         })
