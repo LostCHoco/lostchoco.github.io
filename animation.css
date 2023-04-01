@@ -1,0 +1,18 @@
+@keyframes rainbowColor{
+    from{color:red;}
+    16.67%{color:orange;}
+    33.33%{color:yellow;}
+    50%{ color:chartreuse}
+    66.67%{color:cyan;}
+    83.33%{color:blue;}
+    to{color:magenta; }
+   }
+   @keyframes rainbowBG{
+    from{background:red;}
+    16.67%{background:orange;}
+    33.33%{background:yellow;}
+    50%{ background:chartreuse}
+    66.67%{background:cyan;}
+    83.33%{background:blue;}
+    to{background:magenta; }
+   }
