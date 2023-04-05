@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel</title>
+    <style>
+        @import url(reset.css);
+        #wrapper{
+            width:800px;height:600px;
+            display: grid;
+            grid-template: repeat(60,1fr)/repeat(80,1fr);
+        }
+        .pixel{
+            width: 10px;
+            height:10px;
+            background:black;
+        }
+        .pixel:hover{
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <section id="wrapper"></section>
+</body>
+<script src="pixel.js"></script>
+</html>
