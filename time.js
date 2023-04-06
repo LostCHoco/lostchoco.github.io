@@ -1,12 +1,3 @@
-function time(){
-    let h=new Date().getHours();
-    let m=new Date().getMinutes();
-    let s=new Date().getSeconds();
-    h=addZero(h);
-    m=addZero(m);
-    s=addZero(s);
-    console.log(h+":"+m+":"+s);
-}
 function addZero(n){
     if(n<10){
         n="0"+n;
