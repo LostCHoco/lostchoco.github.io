@@ -23,7 +23,7 @@ const Notepad={
         const body=document.querySelector("#notepad");
     let txt=a.key;
     const actionKey=["Enter","Backspace","Delete","Escape"];
-    if(txt.length<2||txt in actionKey){
+    if(txt.length<2||actionKey.includes(txt)){
         switch(a.key){
             case 'Enter':{
                 body.appendChild(tag("br"));
@@ -70,8 +70,6 @@ class You {
                     if(this.y!==39)this.y++;
                     break;
             }
-            console.log(this.x,this.y);
-        
     }
     move(){
         const beforePixel=document.querySelector(".you");
