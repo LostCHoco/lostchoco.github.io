@@ -7,20 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>owo</title>
     <link rel="shortcut icon" href="cookie.png">
-    <style>
-        @import url("style.css");
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <header>
+        <div id="timePanel"></div>
         <div id="option">
-            <button id="brightBtn" type="button" 
-            onclick="brightMode()">Dark Mode</button>
+            <div id="option_box">
+            </div>
+            <label for="">option</label>
         </div>
     </header>
-    <div id="timePanel"></div>
-    <div id="notepad"></div>
+    <hr>
+    <main>
+        <div id="notepad"></div>
+    </main>
 </body>
-<script src="function.js"></script>
-<script src="time.js"></script>
+<script src="./js/function.js"></script>
+<script src="./js/time.js"></script>
+<script src="./js/index.js" type="module"></script>
 </html>

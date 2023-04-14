@@ -12,8 +12,6 @@ fileSelecter.addEventListener("change",(e)=>{
         const regex=/.+,/;
         const endcodedData=imageData.replace(regex,"");
         console.log(endcodedData);
-        console.log(atob(endcodedData));
+        // console.log(atob(endcodedData));
     };
 })
-console.dir(Request);
-console.dir(Response);

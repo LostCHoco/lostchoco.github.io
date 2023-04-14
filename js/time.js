@@ -1,62 +1,24 @@
-function addZero(n){
-    if(n<10){
-        n="0"+n;
-    }else{
-        n=n.toString();
-    }
-    return n;
+function pixelNumber(n){
+    const pixel=[
+        [1,1,1,1,0,1,1,0,1,1,0,1,1,1,1],  //0
+        [0,0,1,0,0,1,0,0,1,0,0,1,0,0,1],  //1
+        [1,1,1,0,0,1,1,1,1,1,0,0,1,1,1],  //2
+        [1,1,1,0,0,1,1,1,1,0,0,1,1,1,1],  //3
+        [1,0,1,1,0,1,1,1,1,0,0,1,0,0,1],  //4
+        [1,1,1,1,0,0,1,1,1,0,0,1,1,1,1],  //5
+        [1,1,1,1,0,0,1,1,1,1,0,1,1,1,1],  //6
+        [1,1,1,0,0,1,0,0,1,0,0,1,0,0,1],  //7
+        [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1],  //8
+        [1,1,1,1,0,1,1,1,1,0,0,1,1,1,1]   //9
+    ]
+    return pixel[n];
 }
-function getCharMorphology(n){
-    let arr=new Array(15);
-    switch(n){
-        case 1:{
-            arr=[0,0,1,0,0,1,0,0,1,0,0,1,0,0,1];
-            break;
-        }
-        case 2:{
-            arr=[1,1,1,0,0,1,1,1,1,1,0,0,1,1,1];
-            break;
-        }
-        case 3:{
-            arr=[1,1,1,0,0,1,1,1,1,0,0,1,1,1,1];
-            break;
-        }
-        case 4:{
-            arr=[1,0,1,1,0,1,1,1,1,0,0,1,0,0,1];
-            break;
-        }
-        case 5:{
-            arr=[1,1,1,1,0,0,1,1,1,0,0,1,1,1,1];
-            break;
-        }
-        case 6:{
-            arr=[1,1,1,1,0,0,1,1,1,1,0,1,1,1,1];
-            break;
-        }
-        case 7:{
-            arr=[1,1,1,0,0,1,0,0,1,0,0,1,0,0,1];
-            break;
-        }
-        case 8:{
-            arr=[1,1,1,1,0,1,1,1,1,1,0,1,1,1,1];
-            break;
-        }
-        case 9:{
-            arr=[1,1,1,1,0,1,1,1,1,0,0,1,1,1,1];
-            break;
-        }
-        case 0:{
-            arr=[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1];
-            break;
-        } 
-    }
-    return arr;
-}
+
 function setChar(index,char){
     let sub=document.querySelectorAll(".subPanel").item(index);
         let pixel=sub.querySelectorAll(".pixel");
         let i=0;
-        let pixelIndex=getCharMorphology(char);
+        let pixelIndex=pixelNumber(char);
         pixel.forEach(b=>{
                     if(pixelIndex[i]==1){
                         b.classList.add("on");
@@ -66,7 +28,7 @@ function setChar(index,char){
                     i++;
         })
 }
-function setCol(){
+function setPixelColumn(){
     let sub=document.querySelectorAll(".subPanel");
     for(i=2;i<sub.length;i+=3){
         let pixel=sub.item(i).querySelectorAll(".pixel");
@@ -105,14 +67,14 @@ function setTimePanel(){
             sub.item(i).appendChild(pixel);
         }
     }
-    setCol();
+    setPixelColumn();
 }
-function setTime(){
-    let now=new Date();
-    let hour=addZero(now.getHours());
-    let min=addZero(now.getMinutes());
-    let sec=addZero(now.getSeconds());
-    let time=hour+min+sec;
+function setPixelTime(){
+    const now=new Date();
+    const hour=now.getHours().toString().padStart(2,'0');
+    const min=now.getMinutes().toString().padStart(2,'0');
+    const sec=now.getSeconds().toString().padStart(2,'0');
+    const time = hour + min + sec;
     let i=0;
     let arr=[0,1,3,4,6,7];
     arr.forEach(n=>{
@@ -122,6 +84,6 @@ function setTime(){
 }
 window.onload=()=>{
     setTimePanel();
-    setTime();
+    setPixelTime();
 }
-setInterval(setTime,1000);
+setInterval(setPixelTime,1000);
